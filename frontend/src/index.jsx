@@ -1,10 +1,25 @@
 /* React packages */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '@home/index.css';
+
+
+
+/* Custom components */
+import Navbar from '@home/components/Navbar';
+
+
+
+/* Theme */
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import themeData from '@home/theme.json';
+const theme = createTheme(themeData);
+
+
 
 /* Load Components */
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <h1>Hello</h1>
+    <ThemeProvider theme={theme}>
+        <Navbar />
+    </ThemeProvider>
 );

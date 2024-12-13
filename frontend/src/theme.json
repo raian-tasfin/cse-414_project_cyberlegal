@@ -35,10 +35,10 @@
         },
         "type": "light",
         "primary": {
-            "light": "#7986cb",
-            "main": "#3f51b5",
-            "dark": "#303f9f",
-            "contrastText": "#fff"
+            "main": "#3C0008",
+            "light": "#670D0E",
+            "dark": "#1A0004",
+            "contrastText": "#eee"
         },
         "secondary": {
             "light": "#ff4081",
@@ -119,7 +119,7 @@
         "0px 11px 15px -7px rgba(0, 0, 0, 0.2),0px 24px 38px 3px rgba(0, 0, 0, 0.14),0px 9px 46px 8px rgba(0, 0, 0, 0.12)"
     ],
     "typography": {
-        "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+        "fontFamily": "\"Commissioner\"",
         "fontSize": 14,
         "fontWeightLight": 300,
         "fontWeightRegular": 400,
@@ -127,7 +127,7 @@
         "display4": {
             "fontSize": "7rem",
             "fontWeight": 300,
-            "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+            "fontFamily": "\"Commissioner\"",
             "letterSpacing": "-.04em",
             "lineHeight": "1.14286em",
             "marginLeft": "-.04em",
@@ -136,7 +136,7 @@
         "display3": {
             "fontSize": "3.5rem",
             "fontWeight": 400,
-            "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+            "fontFamily": "\"Commissioner\"",
             "letterSpacing": "-.02em",
             "lineHeight": "1.30357em",
             "marginLeft": "-.02em",
@@ -145,7 +145,7 @@
         "display2": {
             "fontSize": "2.8125rem",
             "fontWeight": 400,
-            "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+            "fontFamily": "\"Commissioner\"",
             "lineHeight": "1.06667em",
             "marginLeft": "-.02em",
             "color": "rgba(0, 0, 0, 0.54)"
@@ -153,49 +153,96 @@
         "display1": {
             "fontSize": "2.125rem",
             "fontWeight": 400,
-            "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+            "fontFamily": "\"Commissioner\"",
             "lineHeight": "1.20588em",
             "color": "rgba(0, 0, 0, 0.54)"
+        },
+        "h1": {
+            "fontFamily": "\"EB Garamond\"",
+            "fontWeight": 300,
+            "fontSize": "6rem",
+            "lineHeight": "1.67em",
+            "color": "rgba(0, 0, 0, 0.87)",
+            "letterSpacing": "-0.01562em"
+        },
+        "h2": {
+            "fontFamily": "\"EB Garamond\"",
+            "fontWeight": 300,
+            "fontSize": "3.75rem",
+            "lineHeight": "1.2em",
+            "color": "rgba(0, 0, 0, 0.87)",
+            "letterSpacing": "-0.00833em"
+        },
+        "h3": {
+            "fontFamily": "\"EB Garamond\"",
+            "fontWeight": 400,
+            "fontSize": "3rem",
+            "lineHeight": "1.67em",
+            "color": "rgba(0, 0, 0, 0.87)",
+            "letterSpacing": "0em"
+        },
+        "h4": {
+            "fontFamily": "\"EB Garamond\"",
+            "fontWeight": 400,
+            "fontSize": "2.125rem",
+            "lineHeight": "1.235em",
+            "color": "rgba(0, 0, 0, 0.87)"
+        },
+        "h5": {
+            "fontFamily": "\"EB Garamond\"",
+            "fontWeight": 400,
+            "fontSize": "1.5rem",
+            "lineHeight": "1.334em",
+            "color": "rgba(0, 0, 0, 0.87)",
+            "letterSpacing": "0em"
+        },
+        "h6": {
+            "fontFamily": "\"EB Garamond\"",
+            "fontWeight": 500,
+            "fontSize": "1.25rem",
+            "lineHeight": "1.6em",
+            "color": "rgba(0, 0, 0, 0.87)",
+            "letterSpacing": "0.0075em"
         },
         "headline": {
             "fontSize": "1.5rem",
             "fontWeight": 400,
-            "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+            "fontFamily": "\"EB Garamond\"",
             "lineHeight": "1.35417em",
             "color": "rgba(0, 0, 0, 0.87)"
         },
         "title": {
             "fontSize": "1.3125rem",
             "fontWeight": 500,
-            "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+            "fontFamily": "\"EB Garamond\"",
             "lineHeight": "1.16667em",
             "color": "rgba(0, 0, 0, 0.87)"
         },
         "subheading": {
             "fontSize": "1rem",
             "fontWeight": 400,
-            "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+            "fontFamily": "\"EB Garamond\"",
             "lineHeight": "1.5em",
             "color": "rgba(0, 0, 0, 0.87)"
         },
         "body2": {
             "fontSize": "0.875rem",
             "fontWeight": 500,
-            "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+            "fontFamily": "\"Commissioner\"",
             "lineHeight": "1.71429em",
             "color": "rgba(0, 0, 0, 0.87)"
         },
         "body1": {
             "fontSize": "0.875rem",
             "fontWeight": 400,
-            "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+            "fontFamily": "\"Commissioner\"",
             "lineHeight": "1.46429em",
             "color": "rgba(0, 0, 0, 0.87)"
         },
         "caption": {
             "fontSize": "0.75rem",
             "fontWeight": 400,
-            "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+            "fontFamily": "\"Commissioner\"",
             "lineHeight": "1.375em",
             "color": "rgba(0, 0, 0, 0.54)"
         },
@@ -203,7 +250,7 @@
             "fontSize": "0.875rem",
             "textTransform": "uppercase",
             "fontWeight": 500,
-            "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+            "fontFamily": "\"Commissioner\"",
             "color": "rgba(0, 0, 0, 0.87)"
         }
     },
