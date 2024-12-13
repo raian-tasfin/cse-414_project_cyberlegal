@@ -1,0 +1,9 @@
+* Frontend
+1. =cd= to /frontend *before* any frontend work.
+
+** Navbar
+   1. Home
+   2. Research
+   3. Get Help
+   4. Improve Knowledge
+   5. Login/Signup
