@@ -12,9 +12,19 @@ import {
 } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 
+import {
+    useAuth
+} from '@home/hooks';
+
+const logout = () => {
+    localStorage.removeItem('authToken');
+};
 
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const userData = [
+    { label: 'Account', href: '/account'},
+    { label: 'Logout', href: '/logout'}
+];
 const guestData = [
     { label: 'Login', href: '/login' },
     { label: 'Register', href: '/register' },
@@ -34,7 +44,7 @@ function GuestMenuItem ({ dataItem, closeMenu}) {
         >
             <Typography sx={{
                 textAlign: 'center',
-                fontSize: "20px"
+                fontSize: "18px"
             }}>
                 {dataItem.label}
             </Typography>
@@ -45,15 +55,26 @@ function GuestMenuItem ({ dataItem, closeMenu}) {
 
 
 
-function UserMenu ({sx}) {
+function UserMenu () {
+    const isAuthenticated = useAuth();
+    return (
+            isAuthenticated
+            ? <></>
+            : <GuestMenu/>
+    );
+}
+
+
+
+
+function GuestMenu ({sx}) {
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const handleOpenUserMenu = (event) => {
+    const handleOpenGuestMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-    const handleCloseUserMenu = () => {
+    const handleCloseGuestMenu = () => {
         setAnchorElUser(null);
     };
-
 
 
     return (
@@ -61,7 +82,7 @@ function UserMenu ({sx}) {
             <Tooltip title="Account">
                 <IconButton
                     size="large"
-                    onClick={handleOpenUserMenu}
+                    onClick={handleOpenGuestMenu}
                     color="inherit"
                 >
                     <PersonIcon/>
@@ -82,11 +103,11 @@ function UserMenu ({sx}) {
                     horizontal: 'right',
                 }}
                 open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
+                onClose={handleCloseGuestMenu}
             >
                 {guestData.map((guestMenuItem) => (
                     <GuestMenuItem dataItem={guestMenuItem}
-                                   closeMenu={handleCloseUserMenu}
+                                   closeMenu={handleCloseGuestMenu}
                     />
                 ))}
             </Menu>
