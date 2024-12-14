@@ -1,7 +1,13 @@
 from flask import Blueprint, request, jsonify
 from database import connection
+import secrets
+import datetime
+
 
 login_blueprint = Blueprint('login', __name__)
+sessions = {}
+
+
 
 @login_blueprint.route('/login', methods=['POST'])
 def login_user():
@@ -48,8 +54,17 @@ def login_user():
         }), 401
 
     # Login successful
+    # Generate session token
+    token = secrets.token_hex(16)
+    expirationTime = datetime.datetime.utcnow() + datetime.timedelta(hours=5)
+    sessions[token] = {
+        "email": email,
+        "expires_at": expirationTime
+    }
+
+
     return jsonify({
         "status": "success",
         "message": "Login successful",
-        "data": {"email": email}
+        "data": {"token": token}
     }), 200

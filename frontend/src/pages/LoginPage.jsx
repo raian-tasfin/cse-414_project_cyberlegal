@@ -61,8 +61,8 @@ const LoginForm = () => {
                     },
                 }
             );
-            console.log('Login successful:', response.data);
-            // Handle successful login (e.g., store token, redirect user, etc.)
+            localStorage.setItem('authToken', response.data.data.token);
+            console.log(response.data.data.token)
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 setLoginError(true);
