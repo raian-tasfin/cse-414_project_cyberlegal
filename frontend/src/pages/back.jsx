@@ -53,12 +53,10 @@ const RegistrationForm = () => {
     /* Snackbar state */
     const [passwordMismatch, setPasswordMismatch] = useState(false);
     const [accountExists, setAccountExists] = useState(false);
-    const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
     const handleCloseSnackbars = () => {
         setAccountExists(false);
         setPasswordMismatch(false);
-        setRegistrationSuccess(false);
     };
 
     const handleSubmit = async (event) => {
@@ -80,18 +78,15 @@ const RegistrationForm = () => {
                     },
                 }
             );
+            console.log('Response from server:', response.data);
 
-            if (response.status === 200) {
-                setRegistrationSuccess(true);
-
-                // Reset form after successful registration
-                setFormData({
-                    name: '',
-                    email: '',
-                    password: '',
-                    confirmPassword: '',
-                });
-            }
+            // Reset form after successful registration
+            setFormData({
+                name: '',
+                email: '',
+                password: '',
+                confirmPassword: '',
+            });
         } catch (error) {
             if (error.response && error.response.status === 409) {
                 setAccountExists(true);
@@ -199,15 +194,6 @@ const RegistrationForm = () => {
             >
                 <Alert severity="error" onClose={handleCloseSnackbars}>
                     Account already exists! Try logging in.
-                </Alert>
-            </Snackbar>
-            <Snackbar
-                open={registrationSuccess}
-                autoHideDuration={6000}
-                onClose={handleCloseSnackbars}
-            >
-                <Alert severity="success" onClose={handleCloseSnackbars}>
-                    Registration successful! You can now log in.
                 </Alert>
             </Snackbar>
         </Box>

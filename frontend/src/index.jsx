@@ -18,6 +18,7 @@ import {
     ContributePage,
     ConnectPage,
     RegistrationPage,
+    LoginPage,
 } from '@home/pages';
 
 
@@ -40,6 +41,7 @@ root.render(
                 <Route path="/contribute" element={<ContributePage/>}/>
                 <Route path="/connect" element={<ConnectPage/>}/>
                 <Route path="/register" element={<RegistrationPage/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
                 <Route path="*" element={<NoPage/>}/>
             </Routes>
         </Router>

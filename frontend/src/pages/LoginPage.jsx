@@ -21,13 +21,11 @@ import {
     VisibilityOff
 } from '@mui/icons-material';
 
-const RegistrationForm = () => {
+const LoginForm = () => {
     /* Form data */
     const [formData, setFormData] = useState({
-        name: '',
         email: '',
         password: '',
-        confirmPassword: '',
     });
 
     const handleChange = (event) => {
@@ -40,39 +38,22 @@ const RegistrationForm = () => {
 
     /* Password Visibility */
     const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
     const handleTogglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
-    const handleToggleConfirmPasswordVisibility = () => {
-        setShowConfirmPassword(!showConfirmPassword);
-    };
-
     /* Snackbar state */
-    const [passwordMismatch, setPasswordMismatch] = useState(false);
-    const [accountExists, setAccountExists] = useState(false);
-    const [registrationSuccess, setRegistrationSuccess] = useState(false);
+    const [loginError, setLoginError] = useState(false);
 
-    const handleCloseSnackbars = () => {
-        setAccountExists(false);
-        setPasswordMismatch(false);
-        setRegistrationSuccess(false);
+    const handleCloseSnackbar = () => {
+        setLoginError(false);
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const { password, confirmPassword } = formData;
-
-        if (password !== confirmPassword) {
-            setPasswordMismatch(true);
-            return;
-        }
-
         try {
             const response = await axios.post(
-                'http://localhost:5000/register',
+                'http://localhost:5000/login',
                 formData,
                 {
                     headers: {
@@ -80,23 +61,13 @@ const RegistrationForm = () => {
                     },
                 }
             );
-
-            if (response.status === 200) {
-                setRegistrationSuccess(true);
-
-                // Reset form after successful registration
-                setFormData({
-                    name: '',
-                    email: '',
-                    password: '',
-                    confirmPassword: '',
-                });
-            }
+            console.log('Login successful:', response.data);
+            // Handle successful login (e.g., store token, redirect user, etc.)
         } catch (error) {
-            if (error.response && error.response.status === 409) {
-                setAccountExists(true);
+            if (error.response && error.response.status === 401) {
+                setLoginError(true);
             } else {
-                console.error('Error sending data:', error);
+                console.error('Error during login:', error);
             }
         }
     };
@@ -111,19 +82,9 @@ const RegistrationForm = () => {
             }}
         >
             <Typography variant="h4" gutterBottom>
-                Registration
+                Login
             </Typography>
             <Container sx={{ pb: '20px' }}>
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="name"
-                    label="Name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                />
                 <TextField
                     margin="normal"
                     required
@@ -157,64 +118,24 @@ const RegistrationForm = () => {
                         ),
                     }}
                 />
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="confirmPassword"
-                    label="Confirm Password"
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <IconButton
-                                    onClick={handleToggleConfirmPasswordVisibility}
-                                    edge="end"
-                                >
-                                            {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        ),
-                    }}
-                />
             </Container>
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-                Register
+                Login
             </Button>
             <Snackbar
-                open={passwordMismatch}
+                open={loginError}
                 autoHideDuration={6000}
-                onClose={handleCloseSnackbars}
+                onClose={handleCloseSnackbar}
             >
-                <Alert severity="error" onClose={handleCloseSnackbars}>
-                    Passwords do not match!
-                </Alert>
-            </Snackbar>
-            <Snackbar
-                open={accountExists}
-                autoHideDuration={6000}
-                onClose={handleCloseSnackbars}
-            >
-                <Alert severity="error" onClose={handleCloseSnackbars}>
-                    Account already exists! Try logging in.
-                </Alert>
-            </Snackbar>
-            <Snackbar
-                open={registrationSuccess}
-                autoHideDuration={6000}
-                onClose={handleCloseSnackbars}
-            >
-                <Alert severity="success" onClose={handleCloseSnackbars}>
-                    Registration successful! You can now log in.
+                <Alert severity="error" onClose={handleCloseSnackbar}>
+                    Invalid email or password. Please try again.
                 </Alert>
             </Snackbar>
         </Box>
     );
 };
 
-function RegistrationPage() {
+function LoginPage() {
     return (
         <Page>
             <Container
@@ -238,7 +159,7 @@ function RegistrationPage() {
                     }}
                 >
                     <Box sx={{ maxWidth: '500px' }}>
-                        <RegistrationForm />
+                        <LoginForm />
                     </Box>
                 </Paper>
             </Container>
@@ -246,4 +167,4 @@ function RegistrationPage() {
     );
 }
 
-export default RegistrationPage;
+export default LoginPage;
