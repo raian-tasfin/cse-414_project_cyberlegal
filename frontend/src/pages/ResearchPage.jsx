@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 
 
-function HomePage () {
+function ResearchPage () {
     return (
         <Page>
             <Container sx={{
@@ -19,7 +19,7 @@ function HomePage () {
                 minHeight: '100vh'
             }}>
                 <Typography variant="h1">
-                   Home Page
+                   Research Page
                 </Typography>
                 <Typography variant="h2">
                     Under Construction
@@ -31,4 +31,4 @@ function HomePage () {
 
 
 
-export default HomePage;
+export default ResearchPage;
