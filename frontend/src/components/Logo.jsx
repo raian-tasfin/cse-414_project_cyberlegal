@@ -8,7 +8,7 @@ function Logo({ sx: customSx }) {
         <Typography
             variant="h5"
             component="a"
-            href="#"
+            href="/"
             sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
