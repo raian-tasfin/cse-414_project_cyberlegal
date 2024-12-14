@@ -29,6 +29,12 @@ function PageButton({ pageObj }) {
 function FullScreenNavOptions({ pageData }) {
     return (
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
+            <div>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+            </div>
             {pageData.map((page)=>(<PageButton pageObj={page} />))}
         </Box>
     );
