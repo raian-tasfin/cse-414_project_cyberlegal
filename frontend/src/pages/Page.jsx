@@ -10,7 +10,6 @@ function Page(props) {
             <Navbar />
             <Container>&nbsp;</Container>
             <Container>&nbsp;</Container>
-            <Container>&nbsp;</Container>
             <Container
                 variant="div"
                 sx={{

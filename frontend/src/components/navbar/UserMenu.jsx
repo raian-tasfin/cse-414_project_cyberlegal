@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import {
     Box,
     IconButton,
@@ -8,9 +10,40 @@ import {
     Tooltip,
     MenuItem
 } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
+
 
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const guestData = [
+    { label: 'Login', href: '/login' },
+    { label: 'Register', href: '/register' },
+];
+
+
+
+
+function GuestMenuItem ({ dataItem, closeMenu}) {
+    return (
+        <Link to={dataItem.href}
+              underline="none"
+              style={{ textDecoration: "none" }}
+        >
+        <MenuItem key={dataItem.label}
+                  onClick={closeMenu}
+        >
+            <Typography sx={{
+                textAlign: 'center',
+                fontSize: "20px"
+            }}>
+                {dataItem.label}
+            </Typography>
+        </MenuItem>
+        </Link>
+    );
+}
+
+
 
 function UserMenu ({sx}) {
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -26,10 +59,14 @@ function UserMenu ({sx}) {
     return (
         <Box sx={sx}>
             <Tooltip title="Account">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp"
-                            src="/static/images/avatar/2.jpg" />
+                <IconButton
+                    size="large"
+                    onClick={handleOpenUserMenu}
+                    color="inherit"
+                >
+                    <PersonIcon/>
                 </IconButton>
+
             </Tooltip>
             <Menu
                 sx={{ mt: '45px' }}
@@ -47,13 +84,10 @@ function UserMenu ({sx}) {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
             >
-                {settings.map((setting) => (
-                    <MenuItem key={setting}
-                              onClick={handleCloseUserMenu}>
-                        <Typography sx={{ textAlign: 'center' }}>
-                            {setting}
-                        </Typography>
-                    </MenuItem>
+                {guestData.map((guestMenuItem) => (
+                    <GuestMenuItem dataItem={guestMenuItem}
+                                   closeMenu={handleCloseUserMenu}
+                    />
                 ))}
             </Menu>
         </Box>

@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom/client';
 import {
     BrowserRouter as Router,
     Routes,
-    Route
+    Route,
+    TextField
 } from 'react-router-dom';
 
 
@@ -16,6 +17,7 @@ import {
     ResearchPage,
     ContributePage,
     ConnectPage,
+    RegistrationPage,
 } from '@home/pages';
 
 
@@ -37,6 +39,7 @@ root.render(
                 <Route path="/research" element={<ResearchPage/>}/>
                 <Route path="/contribute" element={<ContributePage/>}/>
                 <Route path="/connect" element={<ConnectPage/>}/>
+                <Route path="/register" element={<RegistrationPage/>}/>
                 <Route path="*" element={<NoPage/>}/>
             </Routes>
         </Router>
