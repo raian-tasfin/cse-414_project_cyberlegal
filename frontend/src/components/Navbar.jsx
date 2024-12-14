@@ -45,7 +45,12 @@ function Navbar() {
         <AppBar
             position="static"
             color={theme.prmary}
-            style={{ position: 'fixed', top: 0 , left : 0,  margin: 0}}
+            style={{
+                position: 'fixed',
+                top: 0 ,
+                left : 0,
+                margin: 0,
+            }}
         >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>

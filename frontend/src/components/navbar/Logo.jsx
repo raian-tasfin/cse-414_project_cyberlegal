@@ -16,6 +16,7 @@ function Logo({ sx: customSx }) {
                 letterSpacing: '.1rem',
                 color: 'inherit',
                 textDecoration: 'none',
+                letterSpacing: "0em",
                 ...customSx, // Apply custom styles here
             }}
         >

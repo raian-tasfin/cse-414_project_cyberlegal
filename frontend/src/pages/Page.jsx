@@ -1,23 +1,27 @@
-/* React packages */
 import React from 'react';
+import {
+    Container,
+} from '@mui/material';
+import { Navbar } from '@home/components';
 
-/* Material components */
-import { CssBaseline } from '@mui/material';
-
-/* Custom components */
-import Navbar from '@home/components/Navbar';
-
-
-
-function Page (props) {
+function Page(props) {
     return (
-        <>
-        <Navbar />
-        { props.children }
-        </>
+        <Container>
+            <Navbar />
+            <Container>&nbsp;</Container>
+            <Container>&nbsp;</Container>
+            <Container>&nbsp;</Container>
+            <Container
+                variant="div"
+                sx={{
+                    mt: 6,
+                    mb: 4,
+                }}
+            >
+                {props.children}
+            </Container>
+        </Container>
     );
 }
-
-
 
 export default Page;

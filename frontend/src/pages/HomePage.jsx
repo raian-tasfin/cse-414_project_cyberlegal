@@ -7,6 +7,11 @@ import {
     Typography
 } from '@mui/material';
 
+import {
+    Slogan,
+    Cards
+} from '@home/components/home-page';
+
 
 function HomePage () {
     return (
@@ -18,12 +23,8 @@ function HomePage () {
                 justifyContent: 'center',
                 minHeight: '100vh'
             }}>
-                <Typography variant="h1">
-                   Home Page
-                </Typography>
-                <Typography variant="h2">
-                    Under Construction
-                </Typography>
+                <Slogan />
+                <Cards />
             </Container>
         </Page>
     );

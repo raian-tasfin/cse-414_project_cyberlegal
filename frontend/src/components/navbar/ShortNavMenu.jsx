@@ -18,7 +18,10 @@ function PageMenuItem({ pageObj }) {
               style={{ textDecoration: 'none' }}
         >
             <MenuItem key={pageObj.label}>
-                <Typography sx={{ textAlign: 'center' }}>
+                <Typography sx={{
+                    textAlign: 'center',
+                    fontSize: "20px"
+                }}>
                     {pageObj.label}
                 </Typography>
             </MenuItem>

@@ -11,7 +11,12 @@ function PageButton({ pageObj }) {
         <Link to={pageObj.href} underline="none">
             <Button key={pageObj.label}
                     variant="text"
-                    sx={{ my: 2, color: 'white', display: 'block' }}
+                    sx={{
+                        my: 2,
+                        color: 'white',
+                        display: 'block',
+                        fontSize: "15px"
+                    }}
             >
                 {pageObj.label}
             </Button>
