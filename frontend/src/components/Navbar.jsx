@@ -50,6 +50,7 @@ function Navbar() {
                 top: 0 ,
                 left : 0,
                 margin: 0,
+                zIndex: 100
             }}
         >
             <Container maxWidth="xl">

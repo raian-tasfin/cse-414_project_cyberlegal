@@ -9,15 +9,18 @@ import {
     Typography,
     TextField,
     Box,
-    Button
+    Button,
+    Paper,
+    IconButton,
+    InputAdornment
 } from '@mui/material';
 
 
-
 import {
-    Slogan,
-    Cards
-} from '@home/components/home-page';
+    Visibility,
+    VisibilityOff
+} from '@mui/icons-material';
+
 
 
 const RegistrationForm = () => {
@@ -27,6 +30,19 @@ const RegistrationForm = () => {
         password: '',
         confirmPassword: '',
     });
+
+    const [showPassword, setShowPassword] = useState(false);
+    const handleTogglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    }
+    const [
+        showConfirmPassword,
+        setShowConfirmPassword
+    ] = useState(false);
+    const handleToggleConfirmPasswordVisibility = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+    }
+
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -38,14 +54,13 @@ const RegistrationForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Here you would typically send the formData to your backend for registration
         console.log('Form submitted:', formData);
-        // Reset form after submission (optional)
+
         setFormData({
-            firstName: '',
-            lastName: '',
+            name: '',
             email: '',
             password: '',
+            confirmPassword: '',
         });
     };
 
@@ -54,47 +69,81 @@ const RegistrationForm = () => {
             <Typography variant="h4" gutterBottom>
                 Registration
             </Typography>
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="name"
-                label="Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-            />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-            />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-            />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="confirmPassword"
-                label="Confirm Password"
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-            />
+            <Container sx={{ pb: "20px" }}>
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="name"
+                    label="Name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                />
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                />
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type={showPassword? "text" : "password"}
+                    value={formData.password}
+                    onChange={handleChange}
+                    InputProps={{
+                        endAdornment:
+                    (
+                        <InputAdornment position="end">
+                        <IconButton
+                            onClick={handleTogglePasswordVisibility}
+                            edge="end"
+                        >
+                                    {showPassword?
+                                     <VisibilityOff/> : <Visibility/>}
+                        </IconButton>
+                        </InputAdornment>
+                    )
+                    }}
+                />
+
+<TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="confirmPassword"
+                    label="Confirm Password"
+                    type={showConfirmPassword? "text" : "password"}
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    InputProps={{
+                        endAdornment:
+                    (
+                        <InputAdornment position="end">
+                        <IconButton
+                            onClick={
+                            handleToggleConfirmPasswordVisibility
+                            }
+                            edge="end"
+                        >
+                                    {showConfirmPassword?
+                                     <VisibilityOff/> : <Visibility/>}
+                        </IconButton>
+                        </InputAdornment>
+                    )
+                    }}
+                />
+
+            </Container>
             <Button
                 type="submit"
                 fullWidth
@@ -119,12 +168,25 @@ function RegistrationPage () {
                 justifyContent: 'center',
                 minHeight: '100vh',
             }}>
-                <RegistrationForm />
+                <Paper
+                    sx={{
+                        minHeight: 'content',
+                        maxWidth: "500px",
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: 'background.default',
+                        padding: "50px",
+                        pt: 10,
+                        pb: 50
+                    }}
+                >
+                    <RegistrationForm />
+                </Paper>
             </Container>
         </Page>
     );
 }
-
 
 
 export default RegistrationPage;
