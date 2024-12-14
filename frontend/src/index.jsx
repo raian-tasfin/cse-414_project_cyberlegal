@@ -1,11 +1,19 @@
 /* React packages */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route
+} from 'react-router-dom';
 
 
 
 /* Custom components */
-import Navbar from '@home/components/Navbar';
+import {
+    HomePage,
+    NoPage
+} from '@home/pages';
 
 
 
@@ -20,6 +28,11 @@ const theme = createTheme(themeData);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <ThemeProvider theme={theme}>
-        <Navbar />
+        <Router>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="*" element={<NoPage />} />
+            </Routes>
+        </Router>
     </ThemeProvider>
 );
