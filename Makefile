@@ -66,3 +66,6 @@ frontend/start:
 
 server/start:
 	$(call with_new_terminal, cd server && flask run)
+
+
+start: frontend/start server/start
