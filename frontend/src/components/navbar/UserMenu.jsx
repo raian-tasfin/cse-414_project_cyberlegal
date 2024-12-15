@@ -1,5 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {
+    Link,
+    useNavigate
+} from 'react-router-dom';
 
 import {
     Box,
@@ -12,69 +15,36 @@ import {
 } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 
-import {
-    useAuth
-} from '@home/hooks';
-
-const logout = () => {
-    localStorage.removeItem('authToken');
-};
+import MenuItemStyled from './MenuItemStyled';
 
 
-const userData = [
-    { label: 'Account', href: '/account'},
-    { label: 'Logout', href: '/logout'}
-];
-const guestData = [
-    { label: 'Login', href: '/login' },
-    { label: 'Register', href: '/register' },
-];
+function UserMenu({sx}) {
+    const userData = [
+        { label: 'Account', href: '/account'},
+        { label: 'Logout', href: '/logout'}
+    ];
+    const guestData = [
+        { label: 'Login', href: '/login' },
+        { label: 'Register', href: '/register' },
+    ];
 
-
-
-
-function GuestMenuItem ({ dataItem, closeMenu}) {
-    return (
-        <Link to={dataItem.href}
-              underline="none"
-              style={{ textDecoration: "none" }}
-        >
-        <MenuItem key={dataItem.label}
-                  onClick={closeMenu}
-        >
-            <Typography sx={{
-                textAlign: 'center',
-                fontSize: "18px"
-            }}>
-                {dataItem.label}
-            </Typography>
-        </MenuItem>
-        </Link>
-    );
-}
-
-
-
-function UserMenu () {
-    const isAuthenticated = useAuth();
-    return (
-            isAuthenticated
-            ? <></>
-            : <GuestMenu/>
-    );
-}
-
-
-
-
-function GuestMenu ({sx}) {
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const handleOpenGuestMenu = (event) => {
+    const isLoggedIn = localStorage.getItem('authToken') !== null;
+
+    const navigate = useNavigate();
+
+    const handleOpenMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-    const handleCloseGuestMenu = () => {
+    const handleCloseMenu = (selectedLabel) => {
         setAnchorElUser(null);
+        console.log('selected:', selectedLabel);
+        if(selectedLabel === 'Logout') {
+            localStorage.removeItem('authToken');
+        }
     };
+    const menuData = isLoggedIn ? userData : guestData;
+
 
 
     return (
@@ -82,7 +52,7 @@ function GuestMenu ({sx}) {
             <Tooltip title="Account">
                 <IconButton
                     size="large"
-                    onClick={handleOpenGuestMenu}
+                    onClick={handleOpenMenu}
                     color="inherit"
                 >
                     <PersonIcon/>
@@ -103,11 +73,12 @@ function GuestMenu ({sx}) {
                     horizontal: 'right',
                 }}
                 open={Boolean(anchorElUser)}
-                onClose={handleCloseGuestMenu}
+                onClose={handleCloseMenu}
             >
-                {guestData.map((guestMenuItem) => (
-                    <GuestMenuItem dataItem={guestMenuItem}
-                                   closeMenu={handleCloseGuestMenu}
+                {menuData.map((menuItem) => (
+                    <MenuItemStyled key={menuItem.label}
+                                    itemData={menuItem}
+                                    closeMenu={handleCloseMenu}
                     />
                 ))}
             </Menu>

@@ -37,6 +37,7 @@ root.render(
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
+                <Route path="/logout" element={<HomePage/>}/>
                 <Route path="/research" element={<ResearchPage/>}/>
                 <Route path="/contribute" element={<ContributePage/>}/>
                 <Route path="/connect" element={<ConnectPage/>}/>

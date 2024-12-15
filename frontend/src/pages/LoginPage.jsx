@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import Page from './Page';
@@ -49,6 +50,9 @@ const LoginForm = () => {
         setLoginError(false);
     };
 
+    /* Login */
+    const navigate = useNavigate();
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -62,7 +66,8 @@ const LoginForm = () => {
                 }
             );
             localStorage.setItem('authToken', response.data.data.token);
-            console.log(response.data.data.token)
+            console.log(response.data.data.token);
+            navigate('/');
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 setLoginError(true);
@@ -119,7 +124,10 @@ const LoginForm = () => {
                     }}
                 />
             </Container>
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button type="submit"
+                    fullWidth variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+            >
                 Login
             </Button>
             <Snackbar
